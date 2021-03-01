@@ -2,9 +2,6 @@ import React, {useState} from 'react';
 
 const Accordion = ({items}) => {
   const [activeIndex, setActiveIndex] = useState(null);
-  // ^^^ this syntax is called "array destructuring"
-
-  console.log("==== here =====")
 
   const onTitleClick = (index) => {
     setActiveIndex(index);
@@ -12,7 +9,6 @@ const Accordion = ({items}) => {
 
   const renderedItems = items.map((item, index) => {
     const active = (index === activeIndex) ? "active" : "";
-  
 
     return (
       <React.Fragment key={item.title}>

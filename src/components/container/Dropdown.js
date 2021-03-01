@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useRef} from 'react';
 
-const Dropdown = ({options, selected, onSelectedChange, label}) => {
+const Dropdown = ({options, onOptionChange, label}) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedColor, setSelectedColor] = useState("");
+  const [selected, setSelected] = useState("");
   const ref = useRef();
 
   useEffect(() => {
@@ -18,14 +18,16 @@ const Dropdown = ({options, selected, onSelectedChange, label}) => {
     if (option.value === selected.value) {
       return null
     }
+
+  const onOptionChange = () => {
+    setSelected(option)
+  }
 // ^^^this prevents the same option from showing up twice, once in the selected section, and once in the dropdown. 
     return (
       <div
        key={option.value} 
        className="item"
-       onClick={() => {
-         onSelectedChange(option)
-       }}
+       onClick={onOptionChange}
        >
         {option.label}
       </div>

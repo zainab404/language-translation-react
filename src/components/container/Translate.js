@@ -36,7 +36,7 @@ const Translate = () => {
         label="Select Language"
         options={languageOptions}
         selected={language}
-        onSelectedChange={setLanguage}
+        onOptionChange={setLanguage}
       />
       <hr/>
       <h3 className="ui header">Output:</h3>

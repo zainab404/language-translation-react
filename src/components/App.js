@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import Accordion from './Accordion';
-import Search from './Search';
-import Dropdown from './Dropdown';
-import Translate from './Translate';
-import Convert from './Convert';
+import Accordion from './container/Accordion';
+import Search from './container/Search';
+import Dropdown from './container/Dropdown';
+import Translate from './container/Translate';
+import Route from './presentational/Route';
+import Header from './presentational/Header';
 
 const items = [
   {title: 'What is React?', content: 'React is a front end javascript framework'}, // 0
@@ -11,7 +12,6 @@ const items = [
   {title: "How do you use React?", content: "You use React by creating components"}
 ];
 // ^^^ how come this list is in this file and not the accordion file?
-// look at other projects to see which component the actual data is
 
 const options = [
   {
@@ -31,11 +31,31 @@ const options = [
 ];
 
 // *******************************************
-
-const App = () => {
+const App = ({selected, setSelected}) => {
   return (
     <div>
-     <Translate/>
+      <Header/>
+
+      <Route path="/">
+        <Accordion items={items}/>
+      </Route>
+
+      <Route path="/search">
+        <Search />
+      </Route>
+
+      <Route path="/dropdown">
+        <Dropdown 
+          label="Select Color"
+          options={options}
+          selected={selected}
+          onOptionChange={setSelected}
+        />
+      </Route>
+
+      <Route path="/translate">
+        <Translate/>
+      </Route>
     </div>
    
   )
